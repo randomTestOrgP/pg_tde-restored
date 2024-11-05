@@ -1,10 +1,12 @@
 # Test Transparent Data Encryption
 
-To check if the data is encrypted, do the following:
+Enabling `pg_tde` extension for a database creates the table access method `tde_heap_basic` for PostgreSQL Community and the `tde_heap_basic` and the `tde_heap` table access method Percona Server for PostgreSQL. These access methods enable you to encrypt the data.
+
+Here's how to do it:
 
 === "pg_tde Beta"
 
-    1. Create a table in the database for which you have [enabled `pg_tde`](setup.md). Enabling `pg_tde`    extension creates the table access method `tde_heap_basic`. To enable data encryption, create the table using this access method as follows:
+    1. Create a table in the database for which you have [enabled `pg_tde`](setup.md) using the `tde_heap_basic` table access method as follows:
 
         ```sql
         CREATE TABLE <table_name> (<field> <datatype>) USING tde_heap_basic;
@@ -12,17 +14,7 @@ To check if the data is encrypted, do the following:
 
         !!! hint
 
-            You can enable data encryption by default by setting the `default_table_access_method` to     `tde_heap_basic`:
-
-            ```sql
-            ALTER SYSTEM  SET default_table_access_method=tde_heap;
-            ```
-
-            Reload the configuration to apply the changes:
-
-            ```
-            SELECT pg_reload_conf();
-            ```
+            Learn more about table access methods and how you can enable data encryption by default in the [Table access methods](table-access-method.md) section.
     
     2. Run the following function:
 
@@ -48,11 +40,15 @@ To check if the data is encrypted, do the following:
 
         This is the tech preview functionality. Its scope is not yet finalized and can change anytime.** Use it only for testing purposes.**
 
-    1. Create a table in the database for which you have [enabled `pg_tde`](setup.md). Enabling `pg_tde`    extension creates the table access method `tde_heap`. To enable data encryption, create the table using this access method as follows:
+    1. Create a table in the database for which you have [enabled `pg_tde`](setup.md) using the `tde_heap` table access method as follows:
 
         ```sql
         CREATE TABLE <table_name> (<field> <datatype>) USING tde_heap;
         ```
+
+        !!! hint
+
+            Learn more about table access methods and how you can enable data encryption by default in the [Table access methods](table-access-method.md) section.
 
     2. Run the following function:
 

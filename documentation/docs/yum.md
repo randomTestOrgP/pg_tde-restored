@@ -46,6 +46,8 @@ You need the `percona-release` repository management tool that enables the desir
 
 ## Install `pg_tde`
 
+After all [preconditions](#preconditions) are met, install the extension.
+
 === "pg_tde Beta"
    
     1. Install Percona Distribution for PostgreSQL 16 and the required packages, run the following command:
@@ -62,7 +64,7 @@ You need the `percona-release` repository management tool that enables the desir
     
 === "pg_tde Tech preview"
    
-    1. Install Percona Distribution for PostgreSQL 16 and the required packages, run the following command:
+    1. To Install Percona Distribution for PostgreSQL 17 and the required packages, run the following command:
 
         ```bash
         sudo yum -y install percona-postgresql-client-common percona-postgresql-common         percona-postgresql-server-dev-all percona-postgresql17 percona-postgresql17-contrib         percona-postgresql17-devel percona-postgresql17-libs

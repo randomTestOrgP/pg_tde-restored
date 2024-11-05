@@ -59,6 +59,8 @@ You need the `percona-release` repository management tool that enables the desir
 
 ## Install `pg_tde`
 
+After all [preconditions](#preconditions) are met, install the extension.
+
 === "pg_tde Beta"
 
     1. Install Percona Distribution for PostgreSQL. 

@@ -104,11 +104,11 @@ After you [enabled `pg_tde`](#enable-extension) and started the Percona Server f
 
 3. We highly recommend you to create your own keyring and rotate the principal key. This is because the default principal key is created from the local keyfile and is stored unencrypted. 
 
-   Set up the key provider for WAL encryption
+    Set up the key provider for WAL encryption
 
-   === "With HaschiCorp Vault"
+    === "With HaschiCorp Vault"
 
-        ```sql
+         ```sql
         SELECT pg_tde_add_key_provider_vault_v2('PG_TDE_GLOBAL','provider-name',:'secret_token','url','mount','ca_path');
         ``` 
 
