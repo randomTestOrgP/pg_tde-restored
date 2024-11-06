@@ -46,7 +46,8 @@ You can change the default table access method so that every table in the entire
 
 However, consider the following before doing so:
 
-* This is a global setting and applies across the entire database cluster and not just a single database. We recommend setting it with caution only if you created the `pg_tde` extensions for all databases. Otherwise PostgreSQL throws an error.
+* This is a global setting and applies across the entire database cluster and not just a single database. 
+We recommend setting it with caution because all tables and materialized views created without an explicit access method in their `CREATE` statement will default to the specified table access method. 
 * You must create the `pg_tde` extension and configure the key provider for all databases before you modify the configuration. Otherwise PostgreSQL won't find the specified access method and will throw an error.
 
 Here's how you can set the new default table access method:
@@ -55,7 +56,7 @@ Here's how you can set the new default table access method:
 
     === "via the SQL statement"
 
-        Use the `ALTER SYSTEM SET` command. This requires superuser privileges.
+        Use the `ALTER SYSTEM SET` command. This requires superuser or ALTER SYSTEM privileges.
 
         This example shows how to set the `tde_heap` access method. Replace it with the `tde_heap_basic` if needed. 
     
@@ -74,12 +75,23 @@ Here's how you can set the new default table access method:
         default_table_access_method = 'tde_heap'
         ```  
 
+    === "via the SET command"
+
+        You can use the SET command to change the default table access method temporarily, for the current session. 
+        
+        Unlike modifying the `postgresql.conf` file or using the ALTER SYSTEM SET command, the changes you make via the SET command don't persist after the session ends.
+
+        You also don't need to have the superuser privileges to run the SET command.
+
+        You can run the SET command anytime during the session. This example shows how to set the `tde_heap` access method. Replace it with the `tde_heap_basic` if needed.
+
+        ```sql
+        SET default_table_access_method = tde_heap;
+        ```
+
 2. Reload the configuration to apply the changes:
 
     ```sql
     SELECT pg_reload_conf();
     ```
 
-
-
-Refer to the [changing the default table access method](#changing-the-default-table-access-method) section for the exact steps. 
